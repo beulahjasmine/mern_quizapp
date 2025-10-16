@@ -9,12 +9,10 @@ function PastQuizzes() {
     const currentYear = new Date().getFullYear();
     const today = new Date();
 
-    // Mock quiz data (simulate DB)
     const generatedQuizzes = Array.from({ length: 10 }, (_, i) => {
       const randomDay = Math.floor(Math.random() * 300);
       const quizDate = new Date(currentYear, 0, 1 + randomDay);
 
-      // Example questions for each quiz
       const questions = Array.from({ length: 5 }, (__, qIndex) => ({
         id: qIndex + 1,
         question: `Question ${qIndex + 1} of Quiz ${i + 1}`,

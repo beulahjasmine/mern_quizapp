@@ -10,7 +10,6 @@ function UpcomingQuizzes() {
     const currentYear = today.getFullYear();
     const quizzes = [];
 
-    // Generate 3 quizzes per month from current month → December
     for (let month = today.getMonth(); month < 12; month++) {
       for (let i = 0; i < 3; i++) {
         const randomDay = Math.floor(Math.random() * 25) + 1;
@@ -36,7 +35,6 @@ function UpcomingQuizzes() {
     if (quizzes.length > 0) setNextQuiz(quizzes[0]);
   }, []);
 
-  // Countdown logic
   useEffect(() => {
     if (!nextQuiz) return;
 

@@ -5,9 +5,7 @@ function QuizDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const quiz = location.state; // passed from PastQuizzes
-
-  // Example questions (normally fetched from API)
+  const quiz = location.state; 
   const sampleQuestions = [
     {
       q: "What is the capital of France?",
@@ -27,7 +25,38 @@ function QuizDetails() {
       correct: "Facebook",
       userAnswer: "Microsoft",
     },
-  ];
+    {
+        q: "What is the largest planet in our solar system?",
+        options: ["Earth", "Mars", "Jupiter", "Saturn"],
+        correct: "Jupiter",
+        userAnswer: "Jupiter",
+      },
+
+    {
+        q: "What is the boiling point of water?",
+        options: ["90°C", "100°C", "110°C", "120°C"],
+        correct: "100°C",
+        userAnswer: "90°C",
+    },
+    {
+        q: "What is the sum of angles in a triangle?",
+        options: ["90°", "180°", "360°", "270°"],
+        correct: "180°",
+        userAnswer: "180°",
+    },
+    {
+        q: "Which language is primarily spoken in Brazil?",
+        options: ["Spanish", "Portuguese", "French", "English"],
+        correct: "Portuguese",
+        userAnswer: "Spanish",
+    },
+    {
+        q: "If all cats are mammals and all mammals are animals, are all cats animals?",
+        options: ["Yes", "No"],
+        correct: "Yes", 
+        userAnswer: "Yes",
+    }
+ ];
 
   return (
     <div style={styles.container}>
@@ -37,10 +66,10 @@ function QuizDetails() {
 
       <h2>{quiz?.title || `Quiz #${id}`}</h2>
       <p>
-        📅 <strong>Date:</strong> {quiz?.date ? new Date(quiz.date).toLocaleDateString("en-GB") : ""}
+         <strong>Date:</strong> {quiz?.date ? new Date(quiz.date).toLocaleDateString("en-GB") : ""}
       </p>
       <p>
-        🏆 <strong>Score:</strong> {quiz?.score || "—"}/{quiz?.total || "—"}
+         <strong>Score:</strong> {quiz?.score || "—"}/{quiz?.total || "—"}
       </p>
 
       <div style={styles.questionsContainer}>
@@ -66,10 +95,10 @@ function QuizDetails() {
               ))}
             </ul>
             <p>
-              ✅ <strong>Correct Answer:</strong> {q.correct}
+               <strong>Correct Answer:</strong> {q.correct}
             </p>
             <p>
-              🧠 <strong>Your Answer:</strong>{" "}
+               <strong>Your Answer:</strong>{" "}
               <span
                 style={{
                   color: q.userAnswer === q.correct ? "green" : "red",

@@ -12,6 +12,7 @@ function Navbar() {
         <Link to="/profile" style={styles.link}>Profile</Link>
       </div>
       <div style={styles.right}>
+        <Link to="/settings" style={styles.link}>Settings</Link>
         <Link to="/login" style={styles.link}>Login</Link>
         <Link to="/signup" style={styles.link}>Signup</Link>
       </div>

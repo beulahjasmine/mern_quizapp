@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function SetupCard({ onStart, maxQuestions }) {
-  const [numQuestions, setNumQuestions] = useState(Math.min(5, maxQuestions));
+  const [numQuestions, setNumQuestions] = useState(5);
 
   const handleStart = () => {
     onStart(numQuestions);
@@ -9,21 +9,22 @@ export default function SetupCard({ onStart, maxQuestions }) {
 
   return (
     <div className="card">
-      <h2>Aptitude Quiz</h2>
-      <p>Pick the number of questions to begin.</p>
-      
-      <label>
-        Number of Questions: 
-        <input
-          type="number"
-          min="1"
-          max={maxQuestions}
-          value={numQuestions}
-          onChange={(e) => setNumQuestions(parseInt(e.target.value))}
-        />
-      </label>
-      
+      <h2>Quiz Dashboard</h2>
+      <p>Welcome! Ready to test your knowledge?</p>
+
+      <label htmlFor="questions">Select number of questions:</label>
+      <select
+        id="questions"
+        value={numQuestions}
+        onChange={(e) => setNumQuestions(Number(e.target.value))}
+      >
+        {[5, 10, 15, 20, 25].filter(n => n <= maxQuestions).map((num) => (
+          <option key={num} value={num}>{num}</option>
+        ))}
+      </select>
+
       <button onClick={handleStart}>Start Quiz</button>
+
     </div>
   );
 }

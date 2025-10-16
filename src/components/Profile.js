@@ -11,7 +11,7 @@ import {
 
 function Profile() {
   const [user, setUser] = useState({
-    name: "Beulah Johnson",
+    name: "Beulah Jasmine",
     username: "beulah123",
     email: "beulah@example.com",
     phone: "+1234567890",
@@ -44,7 +44,7 @@ function Profile() {
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setNewPhoto(URL.createObjectURL(file)); // Preview image
+      setNewPhoto(URL.createObjectURL(file)); 
     }
   };
 
@@ -155,7 +155,6 @@ function Profile() {
   );
 }
 
-// 💅 Styling
 const styles = {
   container: { padding: "20px", fontFamily: "Arial, sans-serif" },
   profileCard: {
