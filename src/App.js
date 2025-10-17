@@ -41,7 +41,7 @@ export default function App() {
             <Route path="/test" element={<TestPage />} />
             {/* Protected Routes */}
             <Route
-              path="/dashboard"
+              path="/home"
               element={
                 <ProtectedRoute>
                   <QuizDashboard />

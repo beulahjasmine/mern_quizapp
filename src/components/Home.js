@@ -20,10 +20,8 @@ export default function Home() {
         <h2>Quizzes Available</h2>
         <p>Explore a variety of quizzes in different categories. Select any quiz to start!</p>
         <div style={styles.quizLinks}>
-          <Link to="/" style={styles.quizButton}>General Knowledge</Link>
-          <Link to="/" style={styles.quizButton}>Science</Link>
-          <Link to="/" style={styles.quizButton}>History</Link>
-          <Link to="/" style={styles.quizButton}>Math</Link>
+          <Link to="/" style={styles.quizButton}>Start Quiz</Link>
+  
         </div>
       </section>
 
@@ -45,6 +43,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <br />
 
       {/* About Developer */}
       <section style={styles.section}>
