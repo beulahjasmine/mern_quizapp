@@ -1,20 +1,58 @@
-import React from "react";
-import { Link } from "react-router-dom";
+// src/components/Navbar.js
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function Navbar() {
+export default function Navbar() {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check login status on mount
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
+
   return (
     <nav style={styles.navbar}>
-      <div style={styles.left}>
-        <Link to="/" style={styles.link}>Dashboard</Link>
-        <Link to="/leaderboard" style={styles.link}>Leaderboard</Link>
-        <Link to="/upcoming-quizzes" style={styles.link}>Upcoming Quizzes</Link>
-        <Link to="/past-quizzes" style={styles.link}>Past Quizzes</Link>
-        <Link to="/profile" style={styles.link}>Profile</Link>
+      <div style={styles.logo}>
+        <Link to="/" style={{ color: "#fff", textDecoration: "none" }}>QuizApp</Link>
       </div>
-      <div style={styles.right}>
-        <Link to="/settings" style={styles.link}>Settings</Link>
-        <Link to="/login" style={styles.link}>Login</Link>
-        <Link to="/signup" style={styles.link}>Signup</Link>
+
+      <div style={styles.links}>
+        {/* Public Links */}
+        {!isLoggedIn && (
+          <>
+            <Link style={styles.link} to="/login">Login</Link>
+            <Link style={styles.link} to="/signup">Signup</Link>
+          </>
+        )}
+
+        {/* Protected Links */}
+        {isLoggedIn && (
+          <>
+            <Link style={styles.link} to="/dashboard">Dashboard</Link>
+            <Link style={styles.link} to="/past-quizzes">Past Quizzes</Link>
+            <Link style={styles.link} to="/upcoming-quizzes">Upcoming Quizzes</Link>
+            <Link style={styles.link} to="/profile">Profile</Link>
+            <Link style={styles.link} to="/leaderboard">Leaderboard</Link>
+          </>
+        )}
+
+        {/* Always Visible */}
+        <Link style={styles.link} to="/settings">Settings</Link>
+
+        {/* Logout */}
+        {isLoggedIn && (
+          <button style={styles.logoutBtn} onClick={handleLogout}>
+            Logout
+          </button>
+        )}
       </div>
     </nav>
   );
@@ -22,28 +60,39 @@ function Navbar() {
 
 const styles = {
   navbar: {
-    backgroundColor: "#007BFF",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "15px 40px",
+    padding: "10px 20px",
+    backgroundColor: "#2575fc",
     color: "#fff",
-    fontFamily: "Arial, sans-serif",
+    flexWrap: "wrap",
+    position: "sticky",
+    top: 0,
+    zIndex: 100,
   },
-  left: {
-    display: "flex",
-    gap: "30px",
+  logo: {
+    fontWeight: "bold",
+    fontSize: "1.3em",
   },
-  right: {
+  links: {
     display: "flex",
-    gap: "20px",
+    gap: "15px",
+    flexWrap: "wrap",
+    alignItems: "center",
   },
   link: {
     color: "#fff",
     textDecoration: "none",
+    fontWeight: "500",
+  },
+  logoutBtn: {
+    backgroundColor: "#ff4d4f",
+    border: "none",
+    padding: "5px 10px",
+    borderRadius: "5px",
+    cursor: "pointer",
+    color: "#fff",
     fontWeight: "bold",
-    fontSize: "16px",
   },
 };
-
-export default Navbar;
