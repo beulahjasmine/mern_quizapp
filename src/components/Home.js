@@ -10,8 +10,12 @@ export default function Home() {
         <h1>Welcome to Quiz App!</h1>
         <p>Challenge your knowledge, track your progress, and compete with others!</p>
         <div style={styles.ctaButtons}>
-          <Link to="/signup" style={{ ...styles.button, backgroundColor: "#2575fc" }}>Signup</Link>
-          <Link to="/login" style={{ ...styles.button, backgroundColor: "#00b894" }}>Login</Link>
+          <Link to="/signup" style={{ ...styles.button, backgroundColor: "#2575fc" }}>
+            Signup
+          </Link>
+          <Link to="/login" style={{ ...styles.button, backgroundColor: "#00b894" }}>
+            Login
+          </Link>
         </div>
       </section>
 
@@ -20,8 +24,10 @@ export default function Home() {
         <h2>Quizzes Available</h2>
         <p>Explore a variety of quizzes in different categories. Select any quiz to start!</p>
         <div style={styles.quizLinks}>
-          <Link to="/" style={styles.quizButton}>Start Quiz</Link>
-  
+          {/* 👇 Updated link to go to Quiz Dashboard */}
+          <Link to="/dashboard" style={styles.quizButton}>
+            Start Quiz
+          </Link>
         </div>
       </section>
 

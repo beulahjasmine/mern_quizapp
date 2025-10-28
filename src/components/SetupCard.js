@@ -9,7 +9,7 @@ export default function SetupCard({ onStart, maxQuestions }) {
 
   return (
     <div className="card">
-      <h2>Quiz Dashboard</h2>
+      <h2>Quiz</h2>
       <p>Welcome! Ready to test your knowledge?</p>
 
       <label htmlFor="questions">Select number of questions:</label>
