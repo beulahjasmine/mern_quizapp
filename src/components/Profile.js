@@ -11,9 +11,9 @@ import {
 
 function Profile() {
   const [user, setUser] = useState({
-    name: "Beulah Jasmine",
-    username: "beulah123",
-    email: "beulah@example.com",
+    name: "Player One",
+    username: "player123",
+    email: "player@example.com",
     phone: "+1234567890",
     points: 1200,
     photo: "https://via.placeholder.com/120",

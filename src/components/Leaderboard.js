@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 
 function Leaderboard() {
   const [players, setPlayers] = useState([]);
-  const [currentUser, setCurrentUser] = useState("Beulah Jasmine");
+  const [currentUser, setCurrentUser] = useState("PlayerOne");
 
   useEffect(() => {
 
     const mockPlayers = [
       { name: "Ava Patel", points: 1620 },
       { name: "Ethan Williams", points: 1490 },
-      { name: "Beulah Jasmine", points: 1380 },
+      { name: "PlayerOne", points: 1380 },
       { name: "Liam Brown", points: 1320 },
       { name: "Sophia Chen", points: 1275 },
       { name: "Noah Davis", points: 1200 },
