@@ -9,34 +9,45 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!email || !password) {
-      alert("Please enter both email and password");
-      return;
+  if (!email || !password) {
+    alert("Please enter both email and password");
+    return;
+  }
+
+  try {
+    console.log("🔵 Sending login request..."); // DEBUG
+    
+    const res = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    console.log("🔵 Response status:", res.status); // DEBUG
+    const data = await res.json();
+    console.log("🔵 Response data:", data); // DEBUG
+
+    if (res.ok) {
+      console.log("✅ Login successful!"); // DEBUG
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      
+      // Check if token was saved
+      console.log("🔵 Token saved:", localStorage.getItem("token")); // DEBUG
+      console.log("🔵 Navigating to dashboard..."); // DEBUG
+      
+      navigate("/dashboard");
+    } else {
+      console.log("❌ Login failed:", data.message); // DEBUG
+      setMessage(data.message || "Login failed");
     }
-
-    try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        localStorage.setItem("token", data.token); // store JWT
-        localStorage.setItem("user", JSON.stringify(data.user)); // store user info
-        navigate("/dashboard"); // redirect after login
-      } else {
-        setMessage(data.message || "Login failed");
-      }
-    } catch (err) {
-      console.error(err);
-      setMessage("Server error");
-    }
-  };
+  } catch (err) {
+    console.error("❌ Error:", err); // DEBUG
+    setMessage("Server error");
+  }
+};
 
   return (
     <div style={styles.container}>
